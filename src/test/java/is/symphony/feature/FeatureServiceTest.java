@@ -13,9 +13,10 @@ public class FeatureServiceTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void WhenOneOfTheFeaturesContainsSpecialCharacter_ThenItShouldThrowException(){
-        List<Feature> features = new ArrayList<>();
-        features.add(Feature.from(FeatureId.from("user@Page"), FeatureState.ENABLED, new ArrayList<String>()));
-        features.add(Feature.from(FeatureId.from("customerPage"), FeatureState.ENABLED, new ArrayList<String>()));
+        List<Feature> featureList = new ArrayList<>();
+        featureList.add(Feature.from(FeatureId.from("user@Page"), FeatureState.ENABLED, new ArrayList<>()));
+        featureList.add(Feature.from(FeatureId.from("customerPage"), FeatureState.ENABLED, new ArrayList<>()));
+        Features features = Features.from(featureList);
 
         FeatureFlagService flagService = new FeatureFlagService(features);
 
@@ -36,10 +37,11 @@ public class FeatureServiceTest {
 
     @Test
     public void WhenAllFeaturesAreInEnabledState_ThenItShouldReturnListOfAllFeatures(){
-        List<Feature> features = new ArrayList<>();
-        features.add(Feature.from(FeatureId.from("userPage"), FeatureState.ENABLED, new ArrayList<String>()));
-        features.add(Feature.from(FeatureId.from("customerPage"), FeatureState.ENABLED, new ArrayList<String>()));
-        features.add(Feature.from(FeatureId.from("billingPage"), FeatureState.ENABLED, new ArrayList<String>()));
+        List<Feature> featureList = new ArrayList<>();
+        featureList.add(Feature.from(FeatureId.from("userPage"), FeatureState.ENABLED, new ArrayList<>()));
+        featureList.add(Feature.from(FeatureId.from("customerPage"), FeatureState.ENABLED, new ArrayList<>()));
+        featureList.add(Feature.from(FeatureId.from("billingPage"), FeatureState.ENABLED, new ArrayList<>()));
+        Features features = Features.from(featureList);
 
         FeatureFlagService flagService = new FeatureFlagService(features);
 
@@ -53,10 +55,11 @@ public class FeatureServiceTest {
 
     @Test
     public void WhenAllFeaturesAreInDisabledState_ThenItShouldReturnEmptyListOfFeatures(){
-        List<Feature> features = new ArrayList<>();
-        features.add(Feature.from(FeatureId.from("userPage"), FeatureState.DISABLED, new ArrayList<String>()));
-        features.add(Feature.from(FeatureId.from("customerPage"), FeatureState.DISABLED, new ArrayList<String>()));
-        features.add(Feature.from(FeatureId.from("billingPage"), FeatureState.DISABLED, new ArrayList<String>()));
+        List<Feature> featureList = new ArrayList<>();
+        featureList.add(Feature.from(FeatureId.from("userPage"), FeatureState.DISABLED, new ArrayList<>()));
+        featureList.add(Feature.from(FeatureId.from("customerPage"), FeatureState.DISABLED, new ArrayList<>()));
+        featureList.add(Feature.from(FeatureId.from("billingPage"), FeatureState.DISABLED, new ArrayList<>()));
+        Features features = Features.from(featureList);
 
         FeatureFlagService flagService = new FeatureFlagService(features);
 
@@ -70,10 +73,11 @@ public class FeatureServiceTest {
 
     @Test
     public void WhenThereAreEnabledAndFilteredFeaturesForTheId_ThenItShouldReturnEnabledAndFilteredFeatures(){
-        List<Feature> features = new ArrayList<>();
-        features.add(Feature.from(FeatureId.from("userPage"), FeatureState.DISABLED, new ArrayList<>()));
-        features.add(Feature.from(FeatureId.from("customerPage"), FeatureState.FILTERED, Arrays.asList("USR123")));
-        features.add(Feature.from(FeatureId.from("billingPage"), FeatureState.ENABLED, new ArrayList<>()));
+        List<Feature> featureList = new ArrayList<>();
+        featureList.add(Feature.from(FeatureId.from("userPage"), FeatureState.DISABLED, new ArrayList<>()));
+        featureList.add(Feature.from(FeatureId.from("customerPage"), FeatureState.FILTERED, Arrays.asList("USR123")));
+        featureList.add(Feature.from(FeatureId.from("billingPage"), FeatureState.ENABLED, new ArrayList<>()));
+        Features features = Features.from(featureList);
 
         FeatureFlagService flagService = new FeatureFlagService(features);
 
@@ -87,10 +91,11 @@ public class FeatureServiceTest {
 
     @Test
     public void WhenThereAreFilteredFeaturesButIdIsNotWhitelisted_ThenItShouldReturnEmptyList(){
-        List<Feature> features = new ArrayList<>();
-        features.add(Feature.from(FeatureId.from("userPage"), FeatureState.FILTERED, Arrays.asList("123", "145555", "98")));
-        features.add(Feature.from(FeatureId.from("customerPage"), FeatureState.FILTERED, Arrays.asList("123")));
-        features.add(Feature.from(FeatureId.from("billingPage"), FeatureState.FILTERED, Arrays.asList("44")));
+        List<Feature> featureList = new ArrayList<>();
+        featureList.add(Feature.from(FeatureId.from("userPage"), FeatureState.FILTERED, Arrays.asList("123", "145555", "98")));
+        featureList.add(Feature.from(FeatureId.from("customerPage"), FeatureState.FILTERED, Arrays.asList("123")));
+        featureList.add(Feature.from(FeatureId.from("billingPage"), FeatureState.FILTERED, Arrays.asList("44")));
+        Features features = Features.from(featureList);
 
         FeatureFlagService flagService = new FeatureFlagService(features);
 

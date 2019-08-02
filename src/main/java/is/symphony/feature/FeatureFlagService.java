@@ -2,14 +2,13 @@ package is.symphony.feature;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 class FeatureFlagService {
-    private final List<Feature> features;
+    private final Features features;
 
-    FeatureFlagService(List<Feature> features){
-        if(features == null) {
-            features = new ArrayList<>();
+    FeatureFlagService(Features features){
+        if(features == null){
+            features = Features.from(new ArrayList<>());
         }
 
         this.features = features;
@@ -17,8 +16,7 @@ class FeatureFlagService {
 
     List<Feature> getEnabledFeaturesFor (String id){
         return features
-                .stream()
-                .filter(feature -> feature.isEnabledFor(id))
-                .collect(Collectors.toList());
+                .getEnabledFeaturesFor(id)
+                .toList();
     }
 }

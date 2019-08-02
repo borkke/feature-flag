@@ -1,5 +1,7 @@
 package is.symphony.feature;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
+
 import java.util.List;
 
 class Feature {
@@ -22,5 +24,17 @@ class Feature {
         if(state.equals(FeatureState.DISABLED)) return false;
 
         return whiteList.contains(id);
+    }
+
+    public FeatureId getFeatureId() {
+        return featureId;
+    }
+
+    public FeatureState getState(){
+        return state;
+    }
+
+    public List<String> getWhiteList(){
+        return whiteList;
     }
 }
