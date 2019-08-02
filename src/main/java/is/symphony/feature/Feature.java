@@ -1,7 +1,5 @@
 package is.symphony.feature;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-
 import java.util.List;
 
 class Feature {
