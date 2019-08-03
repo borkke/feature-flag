@@ -1,10 +1,10 @@
-package is.symphony.feature;
+package is.symphony.feature.model;
 
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FeatureId {
+public final class FeatureId {
     private String id;
 
     private FeatureId(String id) {
@@ -36,7 +36,7 @@ public class FeatureId {
         if (o == null || getClass() != o.getClass()) return false;
         FeatureId featureId = (FeatureId) o;
 
-        return Objects.equals(featureId, featureId.id);
+        return Objects.equals(featureId.id, id);
     }
     @Override
     public int hashCode() {

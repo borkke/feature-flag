@@ -1,9 +1,9 @@
-package is.symphony.feature;
+package is.symphony.feature.model;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-class Features {
+public class Features {
     private List<Feature> featureList;
 
     private Features(List<Feature> featureList){
@@ -15,16 +15,24 @@ class Features {
         return new Features(featureList);
     }
 
-    List<Feature> toList(){
+    public List<Feature> toList(){
         return featureList;
     }
 
-    Features getEnabledFeaturesFor(String id) {
+    public Features getEnabledFeaturesFor(String id) {
         List<Feature> enabledFeatures = featureList
                 .stream()
                 .filter(feature -> feature.isEnabledFor(id))
                 .collect(Collectors.toList());
 
         return new Features(enabledFeatures);
+    }
+
+    public Boolean isEnabledFor(FeatureId featureId, String id) {
+        return featureList
+                .stream()
+                .anyMatch(feature ->
+                        feature.getFeatureId().equals(featureId) &&
+                        feature.isEnabledFor(id));
     }
 }

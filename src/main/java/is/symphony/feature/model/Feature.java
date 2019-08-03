@@ -1,8 +1,8 @@
-package is.symphony.feature;
+package is.symphony.feature.model;
 
 import java.util.List;
 
-class Feature {
+public class Feature {
     private FeatureId featureId;
     private FeatureState state;
     private List<String> whiteList;
@@ -13,7 +13,7 @@ class Feature {
         this.whiteList = whiteList;
     }
 
-    static Feature from(FeatureId featureId, FeatureState state, List<String> whiteList) {
+    public static Feature from(FeatureId featureId, FeatureState state, List<String> whiteList) {
         return new Feature(featureId, state, whiteList);
     }
 

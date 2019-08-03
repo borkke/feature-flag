@@ -1,4 +1,4 @@
-package is.symphony.feature;
+package is.symphony.feature.model;
 
 public enum FeatureState {
     ENABLED,
